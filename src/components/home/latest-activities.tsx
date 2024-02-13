@@ -1,5 +1,5 @@
 import { UnorderedListOutlined } from "@ant-design/icons"
-import { Card, List } from "antd"
+import { Card, List, Space } from "antd"
 import { Text } from "../text"
 import LatestActivitiesSkeleton from "../skeleton/latest-activities";
 import { useList } from "@refinedev/core";
@@ -86,8 +86,21 @@ const LatestActivities = () => {
                     size={48}
                     src={deal?.company.avatarUrl}
                     name={deal?.company.name}                    
-                  />
+                  /> 
                 }
+                description={
+                  <Space size={4}>
+                    <Text strong>{item.user?.name}</Text>
+                    <Text>
+                      {item.action === 'CREATE' ? 'created' : 'moved' }
+                    </Text>
+                    <Text strong>{deal?.title}</Text>
+                    <Text>deal</Text>
+                    <Text>{item.action === 'CREATE' ? 'in' : 'to'}</Text>
+                    <Text strong>{deal?.stage.title}</Text>
+                  </Space>
+              		}
+
               />
             </List.Item>
           )
