@@ -13,9 +13,10 @@ import routerBindings, {
 } from "@refinedev/react-router-v6";
 import { App as AntdApp } from "antd";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import { Home, ForgotPassword, Register, Login} from './pages';
+import { Home, ForgotPassword, Register, Login, CompanyList} from './pages';
 import Layout from "./components/layout";
 import { resources } from "./config/resources";
+import Create from "./pages/company/create";
 
 const API_URL = "https://api.nestjs-query.refine.dev/graphql";
 const WS_URL = "wss://api.nestjs-query.refine.dev/graphql";
@@ -58,7 +59,11 @@ function App() {
                     </Layout>
                     </Authenticated>
                   }>
-                    <Route index element={<Home />}/>
+                    <Route index element={<Home />} />
+                    <Route path='/companies' >
+                      <Route index element={<CompanyList />}  />
+                      <Route path='new' element={<Create />} />
+                    </Route>
                   </Route>
                 </Routes>
                 <RefineKbar />
